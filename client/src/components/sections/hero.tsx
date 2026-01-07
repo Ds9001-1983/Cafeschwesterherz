@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import interiorImage from "@assets/stock_images/cozy_cafe_interior_w_5f9eb83c.jpg";
+import interiorImage from "@assets/IMG_4251_1767806405482.jpeg";
 
 export function Hero() {
   const scrollToMenu = () => {
