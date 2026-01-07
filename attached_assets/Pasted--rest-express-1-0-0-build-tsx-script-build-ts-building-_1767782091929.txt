@@ -1,0 +1,84 @@
+
+> rest-express@1.0.0 build
+> tsx script/build.ts
+
+building client...
+vite v7.1.12 building for production...
+✓ 2235 modules transformed.
+rendering chunks (1)...[meta-images] using dev domain: https://fc95063c-41a9-4444-9cad-c8e9d1c5a6ea-00-3d01ynat6ldr0.riker.replit.dev
+[meta-images] updating meta image tags to: https://fc95063c-41a9-4444-9cad-c8e9d1c5a6ea-00-3d01ynat6ldr0.riker.replit.dev/opengraph.jpg
+../dist/public/index.html                                                            1.79 kB │ gzip:   0.69 kB
+../dist/public/assets/latte_macchiato_with_c626016c-CNpEwEDv.jpg                   111.47 kB
+../dist/public/assets/potato_pancakes_reib_fb2f6c8d-JWqhVhNU.jpg                   177.28 kB
+../dist/public/assets/quiche_lorraine_with_2511863b-BFiI6PfB.jpg                   217.79 kB
+../dist/public/assets/cozy_cafe_interior_w_5f9eb83c-DokhLEuU.jpg                   248.66 kB
+../dist/public/assets/fresh_waffles_with_h_3dabbfab-mxRLIxnz.jpg                   387.33 kB
+../dist/public/assets/german_breakfast_pla_56fa5030-D2cqQX58.jpg                   408.28 kB
+../dist/public/assets/Cafe_Schwesternherz_-_upscaled_1767776136828-BDkSVLiT.jpg  2,155.24 kB
+../dist/public/assets/index-DmYmwhOg.css                                            95.46 kB │ gzip:  15.76 kB
+../dist/public/assets/index-C4SPXeDt.js                                            500.22 kB │ gzip: 160.46 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 3.86s
+building server...
+
+  dist/index.cjs  827.0kb
+
+⚡ Done in 121ms
+~/workspace$ npm run build:wp
+
+> rest-express@1.0.0 build:wp
+> npm run build && rm -rf wp-theme/dist && mkdir -p wp-theme/dist && cp -R dist/* wp-theme/dist/
+
+
+> rest-express@1.0.0 build
+> tsx script/build.ts
+
+building client...
+vite v7.1.12 building for production...
+✓ 2235 modules transformed.
+rendering chunks (1)...[meta-images] using dev domain: https://fc95063c-41a9-4444-9cad-c8e9d1c5a6ea-00-3d01ynat6ldr0.riker.replit.dev
+[meta-images] updating meta image tags to: https://fc95063c-41a9-4444-9cad-c8e9d1c5a6ea-00-3d01ynat6ldr0.riker.replit.dev/opengraph.jpg
+../dist/public/index.html                                                            1.79 kB │ gzip:   0.69 kB
+../dist/public/assets/latte_macchiato_with_c626016c-CNpEwEDv.jpg                   111.47 kB
+../dist/public/assets/potato_pancakes_reib_fb2f6c8d-JWqhVhNU.jpg                   177.28 kB
+../dist/public/assets/quiche_lorraine_with_2511863b-BFiI6PfB.jpg                   217.79 kB
+../dist/public/assets/cozy_cafe_interior_w_5f9eb83c-DokhLEuU.jpg                   248.66 kB
+../dist/public/assets/fresh_waffles_with_h_3dabbfab-mxRLIxnz.jpg                   387.33 kB
+../dist/public/assets/german_breakfast_pla_56fa5030-D2cqQX58.jpg                   408.28 kB
+../dist/public/assets/Cafe_Schwesternherz_-_upscaled_1767776136828-BDkSVLiT.jpg  2,155.24 kB
+../dist/public/assets/index-DmYmwhOg.css                                            95.46 kB │ gzip:  15.76 kB
+../dist/public/assets/index-C4SPXeDt.js                                            500.22 kB │ gzip: 160.46 kB
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 4.23s
+building server...
+
+  dist/index.cjs  827.0kb
+
+⚡ Done in 50ms
+~/workspace$ git add wp-theme/dist package.json
+git commit -m "build wp-theme dist"
+git push
+The following paths are ignored by one of your .gitignore files:
+wp-theme/dist
+hint: Use -f if you really want to add them.
+hint: Disable this message with "git config set advice.addIgnoredFile false"
+[main 7700e68] build wp-theme dist
+ 1 file changed, 1 insertion(+)
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 392 bytes | 392.00 KiB/s, done.
+Total 3 (delta 2), reused 0 (delta 0), pack-reused 0 (from 0)
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/Ds9001-1983/Cafeschwesterherz
+   c03f6e5..7700e68  main -> main
+~/workspace$ 
