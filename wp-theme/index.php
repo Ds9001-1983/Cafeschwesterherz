@@ -29,6 +29,7 @@ if ($html === false) {
 
 /**
  * 1) BASE-HREF in den <head> setzen (muss im HEAD stehen)
+ * Damit relative Pfade wie "assets/..." korrekt auf dist/public/ zeigen.
  */
 if (stripos($html, '<head') !== false) {
   $html = preg_replace(
@@ -40,7 +41,33 @@ if (stripos($html, '<head') !== false) {
 }
 
 /**
- * 2) Platzhalter für WP Head/Footer einfügen
+ * 2) Asset-Pfade fixen (wichtig, weil Vite oft /assets/... oder assets/... ausgibt)
+ * Wir biegen alles sauber auf .../dist/public/assets/ um.
+ */
+$replacements = [
+  'src="/assets/'    => 'src="' . $dist_url . 'assets/',
+  'href="/assets/'   => 'href="' . $dist_url . 'assets/',
+  'src="assets/'     => 'src="' . $dist_url . 'assets/',
+  'href="assets/'    => 'href="' . $dist_url . 'assets/',
+  'src="./assets/'   => 'src="' . $dist_url . 'assets/',
+  'href="./assets/'  => 'href="' . $dist_url . 'assets/',
+];
+
+// einfache str_replace-Fixes
+$html = str_replace(array_keys($replacements), array_values($replacements), $html);
+
+// zusätzlich: srcset (z.B. srcset="assets/a.jpg 1x, assets/b.jpg 2x")
+$html = preg_replace_callback('/\ssrcset="([^"]+)"/i', function ($m) use ($dist_url) {
+  $val = $m[1];
+
+  $val = preg_replace('/(^|,\s*)\/assets\//', '$1' . $dist_url . 'assets/', $val);
+  $val = preg_replace('/(^|,\s*)\.?\/?assets\//', '$1' . $dist_url . 'assets/', $val);
+
+  return ' srcset="' . $val . '"';
+}, $html);
+
+/**
+ * 3) Platzhalter für WP Head/Footer einfügen
  */
 $head_placeholder   = '<!--WP_HEAD_PLACEHOLDER-->';
 $footer_placeholder = '<!--WP_FOOTER_PLACEHOLDER-->';
@@ -53,7 +80,7 @@ if (stripos($html, '</body>') !== false) {
 }
 
 /**
- * 3) WP Head/Footer sauber capturen (ohne eval)
+ * 4) WP Head/Footer sauber capturen (ohne eval)
  */
 ob_start();
 wp_head();
@@ -64,12 +91,12 @@ wp_footer();
 $wp_footer_output = ob_get_clean();
 
 /**
- * 4) Platzhalter ersetzen
+ * 5) Platzhalter ersetzen
  */
 $html = str_replace($head_placeholder, $wp_head_output, $html);
 $html = str_replace($footer_placeholder, $wp_footer_output, $html);
 
 /**
- * 5) Ausgabe
+ * 6) Ausgabe
  */
 echo $html;
