@@ -32,6 +32,19 @@ if ($html === false) {
 }
 
 /**
+ * BASE-HREF setzen, damit relative Pfade wie "assets/..." korrekt auf das Theme zeigen
+ * Beispiel: src="assets/x.jpg" -> /wp-content/themes/wp-theme/dist/public/assets/x.jpg
+ */
+if (stripos($html, '<head') !== false) {
+  $html = preg_replace(
+    '/<head([^>]*)>/i',
+    '<head$1><base href="' . esc_url($dist_url) . '">',
+    $html,
+    1
+  );
+}
+
+/**
  * 1) Asset-Pfade fixen
  * In deiner Struktur liegen die Assets unter: dist/public/assets/...
  * Vite baut je nach Config z.B. mit /assets/... oder assets/...
