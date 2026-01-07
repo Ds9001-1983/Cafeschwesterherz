@@ -7,17 +7,18 @@ get_header();
 
 /**
  * Pfade
+ * Dein Build liegt in: wp-theme/dist/public/index.html
  */
-$dist_dir  = trailingslashit(get_stylesheet_directory()) . 'dist/';
-$dist_url  = trailingslashit(get_stylesheet_directory_uri()) . 'dist/';
+$dist_dir   = trailingslashit(get_stylesheet_directory()) . 'dist/public/';
+$dist_url   = trailingslashit(get_stylesheet_directory_uri()) . 'dist/public/';
 $index_file = $dist_dir . 'index.html';
 
 if (!file_exists($index_file)) {
   echo '<div style="padding:20px;font-family:Arial,sans-serif;">';
   echo '<h2>Build fehlt</h2>';
-  echo '<p>Ich finde keine <code>dist/index.html</code> in deinem Theme.</p>';
+  echo '<p>Ich finde keine <code>dist/public/index.html</code> in deinem Theme.</p>';
   echo '<p>Erwartet: <code>' . esc_html($index_file) . '</code></p>';
-  echo '<p>Bitte im Repo den Vite-Build nach <code>wp-theme/dist/</code> committen.</p>';
+  echo '<p>Bitte im Repo den Build nach <code>wp-theme/dist/public/</code> committen.</p>';
   echo '</div>';
   get_footer();
   exit;
@@ -25,14 +26,15 @@ if (!file_exists($index_file)) {
 
 $html = file_get_contents($index_file);
 if ($html === false) {
-  echo '<div style="padding:20px;font-family:Arial,sans-serif;">Konnte dist/index.html nicht lesen.</div>';
+  echo '<div style="padding:20px;font-family:Arial,sans-serif;">Konnte dist/public/index.html nicht lesen.</div>';
   get_footer();
   exit;
 }
 
 /**
  * 1) Asset-Pfade fixen
- * Vite baut oft mit href="assets/..." oder src="/assets/..." oder src="assets/..."
+ * In deiner Struktur liegen die Assets unter: dist/public/assets/...
+ * Vite baut je nach Config z.B. mit /assets/... oder assets/...
  */
 $replacements = [
   'href="/assets/' => 'href="' . $dist_url . 'assets/',
