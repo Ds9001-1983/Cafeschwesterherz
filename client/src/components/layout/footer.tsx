@@ -1,5 +1,5 @@
 import { Phone, Mail, MapPin, Clock, MessageCircle } from "lucide-react";
-import logo from "/attached_assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
+import logo from "@assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
 
 export function Footer() {
   return (

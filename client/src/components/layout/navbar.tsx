@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
 
-import logo from "/attached_assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
+import logo from "@assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
