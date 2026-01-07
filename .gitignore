@@ -1,7 +1,13 @@
-node_modules
-dist
+node_modules/
 .DS_Store
-server/public
-vite.config.ts.*
+server/public/
+
+# Build-Outputs (global ignorieren)
+dist/
 *.tar.gz
-!wp-theme/dist
+vite.config.ts.*
+
+# ABER: WordPress Theme Build soll ins Repo
+!wp-theme/
+!wp-theme/dist/
+!wp-theme/dist/**
