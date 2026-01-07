@@ -1,13 +1,13 @@
 node_modules/
 .DS_Store
 server/public/
-
-# Build-Outputs (global ignorieren)
-dist/
 *.tar.gz
 vite.config.ts.*
 
-# ABER: WordPress Theme Build soll ins Repo
+# Root build ignorieren
+/dist/
+
+# WordPress Theme Build explizit erlauben
 !wp-theme/
 !wp-theme/dist/
 !wp-theme/dist/**
