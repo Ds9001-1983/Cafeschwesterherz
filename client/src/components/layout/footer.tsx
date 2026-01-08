@@ -65,7 +65,11 @@ export function Footer() {
 
         <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} Café Schwesterherz. Alle Rechte vorbehalten.</p>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
+            <a href="/impressum" className="hover:text-primary transition-colors">Impressum</a>
+            <span>|</span>
+            <a href="/datenschutz" className="hover:text-primary transition-colors">Datenschutz</a>
+            <span>|</span>
             <span>Inh.: Lisa-Maria Herzogenrath</span>
           </div>
         </div>
