@@ -69,6 +69,21 @@ export function Footer() {
             <span>Inh.: Lisa-Maria Herzogenrath</span>
           </div>
         </div>
+
+        <div className="mt-8 pt-4 border-t border-border/50 text-center">
+          <p className="text-xs text-muted-foreground">
+            Made with ❤️ by{" "}
+            <a 
+              href="https://superbrand.marketing" 
+              target="_blank" 
+              rel="noreferrer"
+              className="font-medium hover:text-primary transition-colors"
+            >
+              SUPERBRAND.marketing
+            </a>
+            {" "}– Dein Superheld für deine Werbung.
+          </p>
+        </div>
       </div>
     </footer>
   );
