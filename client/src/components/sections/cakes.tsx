@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import cakeImage from "@assets/IMG_4253_1767807261259.jpeg";
+import cakeImage from "@assets/IMG_4317_1767960840945.jpeg";
 import { Badge } from "@/components/ui/badge";
 
 export function Cakes() {
