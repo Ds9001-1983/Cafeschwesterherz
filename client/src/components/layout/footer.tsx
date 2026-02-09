@@ -75,7 +75,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 pt-4 border-t border-border/50 text-center">
-          <p className="text-xs text-muted-foreground">
+          <p className="text-sm text-muted-foreground">
             Made with ❤️ by{" "}
             <a 
               href="https://superbrand.marketing" 
