@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "wouter";
-import { Menu, X, Phone, MessageCircle } from "lucide-react";
+import { Menu, X, Phone, MessageCircle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
@@ -33,15 +33,27 @@ export function Navbar() {
   ];
 
   return (
-    <motion.nav
+    <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm py-2" : "bg-transparent py-4"
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
+      <AnimatePresence mode="popLayout">
+        <motion.div 
+          initial={{ height: 0, opacity: 0, y: -20 }}
+          animate={{ height: "auto", opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.4, type: "spring", stiffness: 100 }}
+          className="bg-primary text-white px-4 py-2 text-center text-sm font-medium flex items-center justify-center gap-2 shadow-md"
+        >
+          <AlertCircle className="h-4 w-4 animate-pulse" />
+          <span>Vom 18.05. bis 24.05. sind wir im Urlaub. In dieser Zeit bleibt das Café geschlossen.</span>
+        </motion.div>
+      </AnimatePresence>
+      
+      <div className={`container mx-auto px-4 flex items-center justify-between transition-all duration-300 ${isScrolled ? "py-2" : "py-4"}`}>
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => scrollToSection("hero")}>
           <img src={logo} alt="Café Schwesterherz Logo" className="h-12 w-auto rounded-full" />
           <span className={`font-serif text-xl font-bold tracking-tight ${isScrolled ? "text-primary" : "text-primary"}`}>
@@ -110,6 +122,6 @@ export function Navbar() {
           </Sheet>
         </div>
       </div>
-    </motion.nav>
+    </motion.header>
   );
 }
