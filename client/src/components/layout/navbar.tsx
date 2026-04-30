@@ -9,7 +9,7 @@ import logo from "@assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showNotice, setShowNotice] = useState(false);
+  const [noticeType, setNoticeType] = useState<'may1' | 'vacation' | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +17,14 @@ export function Navbar() {
     };
     window.addEventListener("scroll", handleScroll);
     
-    // Check if we should show the notice (hide after May 1st 2026 ends)
-    const hideDate = new Date('2026-05-02T00:00:00');
-    if (new Date() < hideDate) {
-      setShowNotice(true);
+    const now = new Date();
+    const may2Date = new Date('2026-05-02T00:00:00');
+    const may25Date = new Date('2026-05-25T00:00:00');
+    
+    if (now < may2Date) {
+      setNoticeType('may1');
+    } else if (now >= may2Date && now < may25Date) {
+      setNoticeType('vacation');
     }
     
     return () => window.removeEventListener("scroll", handleScroll);
@@ -50,8 +54,9 @@ export function Navbar() {
       transition={{ duration: 0.5 }}
     >
       <AnimatePresence mode="popLayout">
-        {showNotice && (
+        {noticeType === 'may1' && (
           <motion.div 
+            key="may1"
             initial={{ height: 0, opacity: 0, y: -20 }}
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -20 }}
@@ -60,6 +65,19 @@ export function Navbar() {
           >
             <AlertCircle className="h-6 w-6 animate-bounce" />
             <span>WICHTIGE INFO: Am 01.05.2026 haben wir nur bis 16:00 Uhr geöffnet!</span>
+          </motion.div>
+        )}
+        {noticeType === 'vacation' && (
+          <motion.div 
+            key="vacation"
+            initial={{ height: 0, opacity: 0, y: -20 }}
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -20 }}
+            transition={{ delay: 0.5, duration: 0.4, type: "spring", stiffness: 100 }}
+            className="bg-primary text-white px-4 py-2 text-center text-sm font-medium flex items-center justify-center gap-2 shadow-md"
+          >
+            <AlertCircle className="h-4 w-4 animate-pulse" />
+            <span>Vom 18.05. bis 24.05. sind wir im Urlaub. In dieser Zeit bleibt das Café geschlossen.</span>
           </motion.div>
         )}
       </AnimatePresence>
