@@ -9,12 +9,20 @@ import logo from "@assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showNotice, setShowNotice] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
+    
+    // Check if we should show the notice (hide after May 1st 2026 ends)
+    const hideDate = new Date('2026-05-02T00:00:00');
+    if (new Date() < hideDate) {
+      setShowNotice(true);
+    }
+    
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -42,15 +50,18 @@ export function Navbar() {
       transition={{ duration: 0.5 }}
     >
       <AnimatePresence mode="popLayout">
-        <motion.div 
-          initial={{ height: 0, opacity: 0, y: -20 }}
-          animate={{ height: "auto", opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.4, type: "spring", stiffness: 100 }}
-          className="bg-primary text-white px-4 py-2 text-center text-sm font-medium flex items-center justify-center gap-2 shadow-md"
-        >
-          <AlertCircle className="h-4 w-4 animate-pulse" />
-          <span>Vom 18.05. bis 24.05. sind wir im Urlaub. In dieser Zeit bleibt das Café geschlossen.</span>
-        </motion.div>
+        {showNotice && (
+          <motion.div 
+            initial={{ height: 0, opacity: 0, y: -20 }}
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -20 }}
+            transition={{ delay: 0.5, duration: 0.4, type: "spring", stiffness: 100 }}
+            className="bg-red-600 text-white px-4 py-3 text-center text-base md:text-lg font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-lg"
+          >
+            <AlertCircle className="h-6 w-6 animate-bounce" />
+            <span>WICHTIGE INFO: Am 01.05.2026 haben wir nur bis 16:00 Uhr geöffnet!</span>
+          </motion.div>
+        )}
       </AnimatePresence>
       
       <div className={`container mx-auto px-4 flex items-center justify-between transition-all duration-300 ${isScrolled ? "py-2" : "py-4"}`}>
