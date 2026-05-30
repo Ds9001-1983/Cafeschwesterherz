@@ -89,7 +89,7 @@ const menuData: MenuCategory[] = [
   },
   {
     id: "waffles",
-    title: "Waffeln & Eis",
+    title: "Waffeln",
     description: "Hausgemacht, süß und unwiderstehlich",
     items: [
       {
