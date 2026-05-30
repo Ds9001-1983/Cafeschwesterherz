@@ -125,21 +125,6 @@ const menuData: MenuCategory[] = [
         description: "Eis, Sahne, Schokosoße und Krokant",
         price: "10,00€",
         badge: "Tipp"
-      },
-      {
-        name: "Schoko Solo",
-        description: "1 Kugel Schokoladeneis mit Kirschen und Sahne",
-        price: "5,50€"
-      },
-      {
-        name: "Erdbeerbecher",
-        description: "Erdbeereis mit Vanilleeis, Erdbeersoße, Erdbeeren und Sahne",
-        price: "7,50€"
-      },
-      {
-        name: "Walnussbecher",
-        description: "Zwei Kugeln Walnusseis, eine Kugel Vanilleeis, Sahne, Walnüsse und Karamellsoße",
-        price: "8,50€"
       }
     ]
   },
