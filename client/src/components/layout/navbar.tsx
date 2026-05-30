@@ -46,13 +46,19 @@ export function Navbar() {
 
   return (
     <motion.header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 flex flex-col ${
+        isScrolled ? "bg-white/90 backdrop-blur-md shadow-sm" : "bg-white/80 md:bg-transparent"
       }`}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
     >
+      {/* Dauerhafter Reservierungshinweis */}
+      <div className="bg-[#EADDCA] text-amber-950 px-4 py-2 text-center text-xs md:text-sm font-medium flex items-center justify-center gap-2 border-b border-amber-900/10">
+        <AlertCircle className="h-4 w-4 shrink-0" />
+        <span>Bei einer Reservierung räumen wir Ihnen zwei Stunden Zeit für Ihren Aufenthalt ein.</span>
+      </div>
+
       <AnimatePresence mode="popLayout">
         {noticeType === 'may1' && (
           <motion.div 
