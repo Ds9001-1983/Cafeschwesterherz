@@ -25,8 +25,8 @@ export function Navbar() {
       notices.push('may1');
     }
     
-    // Hitze-Hinweis für nächste Woche (verschwindet am 11. Mai)
-    if (now < new Date('2026-05-11T00:00:00')) {
+    // Hitze-Hinweis (verschwindet am 1. Juli)
+    if (now < new Date('2026-07-01T00:00:00')) {
       notices.push('heatwave');
     }
     
