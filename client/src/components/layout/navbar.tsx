@@ -9,7 +9,7 @@ import logo from "@assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [noticeType, setNoticeType] = useState<'may1' | 'vacation' | null>(null);
+  const [activeNotices, setActiveNotices] = useState<string[]>([]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,14 +18,24 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     
     const now = new Date();
-    const may2Date = new Date('2026-05-02T00:00:00');
-    const may25Date = new Date('2026-05-25T00:00:00');
+    const notices: string[] = [];
     
-    if (now < may2Date) {
-      setNoticeType('may1');
-    } else if (now >= may2Date && now < may25Date) {
-      setNoticeType('vacation');
+    // 1. Mai Hinweis (verschwindet am 2. Mai)
+    if (now < new Date('2026-05-02T00:00:00')) {
+      notices.push('may1');
     }
+    
+    // Hitze-Hinweis für nächste Woche (verschwindet am 11. Mai)
+    if (now < new Date('2026-05-11T00:00:00')) {
+      notices.push('heatwave');
+    }
+    
+    // Urlaubshinweis (ab 2. Mai bis 25. Mai)
+    if (now >= new Date('2026-05-02T00:00:00') && now < new Date('2026-05-25T00:00:00')) {
+      notices.push('vacation');
+    }
+    
+    setActiveNotices(notices);
     
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -60,26 +70,41 @@ export function Navbar() {
       </div>
 
       <AnimatePresence mode="popLayout">
-        {noticeType === 'may1' && (
+        {activeNotices.includes('may1') && (
           <motion.div 
             key="may1"
             initial={{ height: 0, opacity: 0, y: -20 }}
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -20 }}
-            transition={{ delay: 0.5, duration: 0.4, type: "spring", stiffness: 100 }}
-            className="bg-red-600 text-white px-4 py-3 text-center text-base md:text-lg font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-lg"
+            transition={{ delay: 0.2, duration: 0.4, type: "spring", stiffness: 100 }}
+            className="bg-red-600 text-white px-4 py-3 text-center text-base md:text-lg font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-lg border-b border-red-700"
           >
             <AlertCircle className="h-6 w-6 animate-bounce" />
             <span>WICHTIGE INFO: Am 01.05.2026 haben wir nur bis 16:00 Uhr geöffnet!</span>
           </motion.div>
         )}
-        {noticeType === 'vacation' && (
+        
+        {activeNotices.includes('heatwave') && (
+          <motion.div 
+            key="heatwave"
+            initial={{ height: 0, opacity: 0, y: -20 }}
+            animate={{ height: "auto", opacity: 1, y: 0 }}
+            exit={{ height: 0, opacity: 0, y: -20 }}
+            transition={{ delay: 0.3, duration: 0.4, type: "spring", stiffness: 100 }}
+            className="bg-orange-500 text-white px-4 py-3 text-center text-sm md:text-base font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-md border-b border-orange-600"
+          >
+            <AlertCircle className="h-5 w-5 animate-pulse" />
+            <span>☀️ Hitzewelle: Aufgrund der heißen Temperaturen schließen wir kommende Woche bereits um 17:00 Uhr. Ein schönes Wochenende euch! ☀️</span>
+          </motion.div>
+        )}
+
+        {activeNotices.includes('vacation') && (
           <motion.div 
             key="vacation"
             initial={{ height: 0, opacity: 0, y: -20 }}
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -20 }}
-            transition={{ delay: 0.5, duration: 0.4, type: "spring", stiffness: 100 }}
+            transition={{ delay: 0.4, duration: 0.4, type: "spring", stiffness: 100 }}
             className="bg-primary text-white px-4 py-2 text-center text-sm font-medium flex items-center justify-center gap-2 shadow-md"
           >
             <AlertCircle className="h-4 w-4 animate-pulse" />
