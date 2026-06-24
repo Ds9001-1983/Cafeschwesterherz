@@ -94,7 +94,7 @@ export function Navbar() {
             className="bg-orange-500 text-white px-4 py-3 text-center text-sm md:text-base font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-md border-b border-orange-600"
           >
             <AlertCircle className="h-5 w-5 animate-pulse" />
-            <span>☀️ Hitzewelle: Aufgrund der heißen Temperaturen schließen wir aktuell bereits um 17:00 Uhr. Ein schönes Wochenende euch! ☀️</span>
+            <span>☀️ Hitzewelle: Aufgrund der heißen Temperaturen schließen wir aktuell bereits um 17:00 Uhr. ☀️</span>
           </motion.div>
         )}
 
