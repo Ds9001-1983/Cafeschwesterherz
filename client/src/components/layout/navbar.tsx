@@ -25,8 +25,8 @@ export function Navbar() {
       notices.push('may1');
     }
     
-    // Hitze-Hinweis (verschwindet am 1. Juli)
-    if (now < new Date('2026-07-01T00:00:00')) {
+    // Hitze-Hinweis (verschwindet am 31. Juli)
+    if (now < new Date('2026-07-31T00:00:00')) {
       notices.push('heatwave');
     }
     
@@ -94,7 +94,7 @@ export function Navbar() {
             className="bg-orange-500 text-white px-4 py-3 text-center text-sm md:text-base font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-md border-b border-orange-600"
           >
             <AlertCircle className="h-5 w-5 animate-pulse" />
-            <span>☀️ Hitzewelle: Aufgrund der heißen Temperaturen schließen wir aktuell bereits um 15:00 Uhr. ☀️</span>
+            <span>☀️ Hitzewelle: Aufgrund der heißen Temperaturen schließen wir am 29. und 30.07. bereits um 16:00 Uhr. ☀️</span>
           </motion.div>
         )}
 
