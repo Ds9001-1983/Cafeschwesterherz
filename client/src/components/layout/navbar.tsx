@@ -20,19 +20,9 @@ export function Navbar() {
     const now = new Date();
     const notices: string[] = [];
     
-    // 1. Mai Hinweis (verschwindet am 2. Mai)
-    if (now < new Date('2026-05-02T00:00:00')) {
-      notices.push('may1');
-    }
-    
-    // Hitze-Hinweis (verschwindet am 31. Juli)
-    if (now < new Date('2026-07-31T00:00:00')) {
-      notices.push('heatwave');
-    }
-    
-    // Urlaubshinweis (ab 2. Mai bis 25. Mai)
-    if (now >= new Date('2026-05-02T00:00:00') && now < new Date('2026-05-25T00:00:00')) {
-      notices.push('vacation');
+    // Schließtag Freitag, 14.08.2026 (verschwindet in der Nacht zu Samstag)
+    if (now >= new Date('2026-08-14T00:00:00') && now < new Date('2026-08-15T00:00:00')) {
+      notices.push('closed-2026-08-14');
     }
     
     setActiveNotices(notices);
@@ -70,9 +60,9 @@ export function Navbar() {
       </div>
 
       <AnimatePresence mode="popLayout">
-        {activeNotices.includes('may1') && (
-          <motion.div 
-            key="may1"
+        {activeNotices.includes('closed-2026-08-14') && (
+          <motion.div
+            key="closed-2026-08-14"
             initial={{ height: 0, opacity: 0, y: -20 }}
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -20 }}
@@ -80,35 +70,7 @@ export function Navbar() {
             className="bg-red-600 text-white px-4 py-3 text-center text-base md:text-lg font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-lg border-b border-red-700"
           >
             <AlertCircle className="h-6 w-6 animate-bounce" />
-            <span>WICHTIGE INFO: Am 01.05.2026 haben wir nur bis 16:00 Uhr geöffnet!</span>
-          </motion.div>
-        )}
-        
-        {activeNotices.includes('heatwave') && (
-          <motion.div 
-            key="heatwave"
-            initial={{ height: 0, opacity: 0, y: -20 }}
-            animate={{ height: "auto", opacity: 1, y: 0 }}
-            exit={{ height: 0, opacity: 0, y: -20 }}
-            transition={{ delay: 0.3, duration: 0.4, type: "spring", stiffness: 100 }}
-            className="bg-orange-500 text-white px-4 py-3 text-center text-sm md:text-base font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-md border-b border-orange-600"
-          >
-            <AlertCircle className="h-5 w-5 animate-pulse" />
-            <span>☀️ Hitzewelle: Aufgrund der heißen Temperaturen schließen wir am 29. und 30.07. bereits um 16:00 Uhr. ☀️</span>
-          </motion.div>
-        )}
-
-        {activeNotices.includes('vacation') && (
-          <motion.div 
-            key="vacation"
-            initial={{ height: 0, opacity: 0, y: -20 }}
-            animate={{ height: "auto", opacity: 1, y: 0 }}
-            exit={{ height: 0, opacity: 0, y: -20 }}
-            transition={{ delay: 0.4, duration: 0.4, type: "spring", stiffness: 100 }}
-            className="bg-primary text-white px-4 py-2 text-center text-sm font-medium flex items-center justify-center gap-2 shadow-md"
-          >
-            <AlertCircle className="h-4 w-4 animate-pulse" />
-            <span>Vom 18.05. bis 24.05. sind wir im Urlaub. In dieser Zeit bleibt das Café geschlossen.</span>
+            <span>Heute Freitag, den 14.08.2026 geschlossen</span>
           </motion.div>
         )}
       </AnimatePresence>
