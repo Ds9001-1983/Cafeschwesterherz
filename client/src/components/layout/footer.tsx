@@ -53,7 +53,7 @@ export function Footer() {
             <div className="space-y-2">
               <div className="flex justify-between max-w-[200px]">
                 <span className="font-medium">Mittwoch - Sonntag</span>
-                <span>10:00 - 18:00</span>
+                <span>10:00 - 17:00</span>
               </div>
               <div className="flex justify-between max-w-[200px] text-muted-foreground">
                 <span>Montag & Dienstag</span>

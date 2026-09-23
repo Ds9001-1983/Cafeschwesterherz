@@ -51,7 +51,7 @@ export function About() {
             <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
               <div className="bg-white p-4 rounded-xl shadow-sm border border-border/50">
                 <p className="font-serif font-bold text-primary text-xl">Mi-So</p>
-                <p className="text-sm text-muted-foreground">10:00 - 18:00 Uhr</p>
+                <p className="text-sm text-muted-foreground">10:00 - 17:00 Uhr</p>
               </div>
               <div className="bg-white p-4 rounded-xl shadow-sm border border-border/50">
                 <p className="font-serif font-bold text-primary text-xl">Mo & Di</p>

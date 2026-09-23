@@ -20,9 +20,9 @@ export function Navbar() {
     const now = new Date();
     const notices: string[] = [];
     
-    // Schließtag Freitag, 14.08.2026 (verschwindet in der Nacht zu Samstag)
-    if (now >= new Date('2026-08-14T00:00:00') && now < new Date('2026-08-15T00:00:00')) {
-      notices.push('closed-2026-08-14');
+    // Urlaubshinweis 07./08.10.2026 (verschwindet am 09.10.)
+    if (now < new Date('2026-10-09T00:00:00')) {
+      notices.push('vacation-2026-10');
     }
     
     setActiveNotices(notices);
@@ -60,17 +60,17 @@ export function Navbar() {
       </div>
 
       <AnimatePresence mode="popLayout">
-        {activeNotices.includes('closed-2026-08-14') && (
+        {activeNotices.includes('vacation-2026-10') && (
           <motion.div
-            key="closed-2026-08-14"
+            key="vacation-2026-10"
             initial={{ height: 0, opacity: 0, y: -20 }}
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -20 }}
             transition={{ delay: 0.2, duration: 0.4, type: "spring", stiffness: 100 }}
-            className="bg-red-600 text-white px-4 py-3 text-center text-base md:text-lg font-bold flex flex-col md:flex-row items-center justify-center gap-2 shadow-lg border-b border-red-700"
+            className="bg-primary text-white px-4 py-2 text-center text-sm font-medium flex items-center justify-center gap-2 shadow-md"
           >
-            <AlertCircle className="h-6 w-6 animate-bounce" />
-            <span>Heute Freitag, den 14.08.2026 geschlossen</span>
+            <AlertCircle className="h-4 w-4 animate-pulse" />
+            <span>Am 07. und 08.10.2026 sind wir im Urlaub. An diesen beiden Tagen bleibt das Café geschlossen.</span>
           </motion.div>
         )}
       </AnimatePresence>
