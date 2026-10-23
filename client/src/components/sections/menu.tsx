@@ -9,7 +9,6 @@ import coffeeImg from "@assets/stock_images/latte_macchiato_with_c626016c.jpg";
 import waffleImg from "@assets/stock_images/fresh_waffles_with_h_3dabbfab.jpg";
 import breakfastImg from "@assets/stock_images/german_breakfast_pla_56fa5030.jpg";
 import reibekuchenImg from "@assets/stock_images/potato_pancakes_reib_fb2f6c8d.jpg";
-import quicheImg from "@assets/stock_images/quiche_lorraine_with_2511863b.jpg";
 
 type MenuSubitem = {
   name: string;
@@ -126,12 +125,6 @@ const menuData: MenuCategory[] = [
             price: "8,50€"
           },
           {
-            name: "Nümbrechter Frühstücksschiffchen",
-            description: "Hausmacher Frikadelle, Schinken, Salami, Käse, Rührei, Butter, Brotkorb mit versch. Brot und Brötchen",
-            price: "19,20€",
-            badge: "Beliebt"
-          },
-          {
             name: "Alpenhütte",
             description: "Brotkorb mit versch. Brot und Brötchen, versch. Käsesorten, Kräuterfrischkäse, Obst, Butter, Konfitüre",
             price: "15,20€"
@@ -231,11 +224,6 @@ const menuData: MenuCategory[] = [
         title: "Mittwoch",
         items: [
           {
-            name: "Hausmacher Frikadellen mit Kartoffelsalat",
-            description: "Dazu ein kleines Salatbukett",
-            price: "10,50€"
-          },
-          {
             name: "Gulaschsuppe",
             description: "Mit Brot oder Brötchen",
             price: "8,20€"
@@ -279,19 +267,8 @@ const menuData: MenuCategory[] = [
         ]
       },
       {
-        title: "Ab Donnerstag · Quiches & Kartoffeln",
+        title: "Ab Donnerstag · Kartoffeln",
         items: [
-          {
-            name: "Quiche Lorraine",
-            description: "Mit Lauch und Speck, dazu Salatbukett",
-            price: "14,10€",
-            image: quicheImg
-          },
-          {
-            name: "Gemüse-Quiche",
-            description: "Mit Gemüse der Saison, dazu Salatbukett",
-            price: "14,10€"
-          },
           {
             name: "Folienkartoffel",
             description: "Mit Kräuterquark und Salatbukett",
@@ -307,21 +284,6 @@ const menuData: MenuCategory[] = [
       {
         title: "Ab Donnerstag · Salate",
         items: [
-          {
-            name: "Ceaser Salat mit Croutons",
-            description: "Dazu Baguette",
-            price: "13,80€"
-          },
-          {
-            name: "Ceaser Salat mit Hähnchenbruststreifen",
-            description: "Dazu Baguette",
-            price: "14,50€"
-          },
-          {
-            name: "Ceaser Salat mit Garnelen",
-            description: "Dazu Baguette",
-            price: "17,20€"
-          },
           {
             name: "Salat Schwesterherz",
             description: "Mit Hähnchenbruststreifen und Brot-Croutons, dazu Spiegelei",
