@@ -4,6 +4,7 @@ import { Hero } from "@/components/sections/hero";
 import { About } from "@/components/sections/about";
 import { Menu } from "@/components/sections/menu";
 import { Cakes } from "@/components/sections/cakes";
+import { Weihnachten } from "@/components/sections/weihnachten";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <Weihnachten />
         <About />
         <Cakes />
         <Menu />

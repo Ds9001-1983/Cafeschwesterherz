@@ -107,3 +107,19 @@
     @apply font-serif;
   }
 }
+
+/* Weihnachtssektion: Schneefall. Bei reduzierter Bewegung liegt der Schnee still. */
+@keyframes schneefall {
+  from { transform: translate3d(0, -2rem, 0); }
+  to { transform: translate3d(var(--drift, 0px), 1500px, 0); }
+}
+.schneeflocke {
+  animation: schneefall var(--dauer, 16s) linear var(--verzoegerung, 0s) infinite;
+  will-change: transform;
+}
+@media (prefers-reduced-motion: reduce) {
+  .schneeflocke {
+    animation: none;
+    transform: translate3d(0, var(--ruhe-y, 0px), 0);
+  }
+}

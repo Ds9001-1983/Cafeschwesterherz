@@ -4,29 +4,23 @@ import { Menu, X, Phone, MessageCircle, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
+import { jetzt, weihnachtsstand, type Weihnachtsstand } from "@/lib/weihnachten";
 
 import logo from "@assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [activeNotices, setActiveNotices] = useState<string[]>([]);
+  const [stand, setStand] = useState<Weihnachtsstand | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
     window.addEventListener("scroll", handleScroll);
-    
-    const now = new Date();
-    const notices: string[] = [];
-    
-    // Urlaubshinweis 07./08.10.2026 (verschwindet am 09.10.)
-    if (now < new Date('2026-10-09T00:00:00')) {
-      notices.push('vacation-2026-10');
-    }
-    
-    setActiveNotices(notices);
-    
+
+    // Betriebsferien-Hinweis 24.12.2026 (ab 15 Uhr) bis 05.01.2027, verschwindet am 06.01.2027
+    setStand(weihnachtsstand(jetzt()));
+
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -60,17 +54,24 @@ export function Navbar() {
       </div>
 
       <AnimatePresence mode="popLayout">
-        {activeNotices.includes('vacation-2026-10') && (
+        {stand && (stand.ferienVorab || stand.ferienLaufend) && (
           <motion.div
-            key="vacation-2026-10"
+            key="betriebsferien-2026-12"
             initial={{ height: 0, opacity: 0, y: -20 }}
             animate={{ height: "auto", opacity: 1, y: 0 }}
             exit={{ height: 0, opacity: 0, y: -20 }}
             transition={{ delay: 0.2, duration: 0.4, type: "spring", stiffness: 100 }}
             className="bg-primary text-white px-4 py-2 text-center text-sm font-medium flex items-center justify-center gap-2 shadow-md"
           >
-            <AlertCircle className="h-4 w-4 animate-pulse" />
-            <span>Am 07. und 08.10.2026 sind wir im Urlaub. An diesen beiden Tagen bleibt das Café geschlossen.</span>
+            <AlertCircle className="h-4 w-4 shrink-0 motion-safe:animate-pulse" />
+            {stand.ferienVorab ? (
+              <>
+                <span className="md:hidden">Betriebsferien: 24.12. ab 15 Uhr bis 05.01.2027. Ab 06.01. wieder für Sie da.</span>
+                <span className="hidden md:inline">Betriebsferien: An Heiligabend sind wir bis 15 Uhr für Sie da, danach geschlossen bis 05.01.2027. Ab Mittwoch, 06.01.2027, sind wir wieder für Sie da.</span>
+              </>
+            ) : (
+              <span>Wir sind in den Betriebsferien. Ab Mittwoch, 06.01.2027, sind wir wieder für Sie da.</span>
+            )}
           </motion.div>
         )}
       </AnimatePresence>
