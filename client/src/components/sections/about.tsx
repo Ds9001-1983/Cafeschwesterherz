@@ -3,7 +3,7 @@ import logo from "@assets/Cafe_Schwesternherz_-_upscaled_1767776136828.jpg";
 
 export function About() {
   return (
-    <section id="about" className="py-20 bg-secondary/20">
+    <section id="about" className="py-20 bg-secondary/20 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row items-center gap-12">
           
